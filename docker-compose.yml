@@ -19,7 +19,7 @@ services:
       dockerfile: docker/uwsgi/Dockerfile
 
   dht22:
-    image: rdok/multimeter:uwsgi
+    image: rdok/multimeter:dht22
     build:
       context: .
       dockerfile: docker/dht22/Dockerfile

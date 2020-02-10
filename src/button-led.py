@@ -13,12 +13,8 @@ GPIO.setup(ledPin, GPIO.OUT)
 while True:
     buttonPressed = GPIO.input(buttonPin)
 
-    if buttonPressed:
-        print('pressed')
-        GPIO.output(ledPin, GPIO.HIGH)
-    else:
-        GPIO.output(ledPin, GPIO.LOW)
-        print('not pressed')
+    GPIO.output(ledPin, GPIO.HIGH) \
+        if buttonPressed else GPIO.output(ledPin, GPIO.LOW)
 
     time.sleep(.1)
 
