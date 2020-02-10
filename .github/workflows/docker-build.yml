@@ -26,3 +26,7 @@ jobs:
         env:
           DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+      - name: Trigger CD
+        run: curl -X POST "https://jenkins.rdok.dev/job/multimeter/job/deploy/build?token=${TOKEN_NAME}"
+        env:
+          JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}
