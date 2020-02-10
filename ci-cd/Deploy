@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage('Pull Images') {
            steps { ansiColor('xterm') {
-              sh 'docker-compose build'
+              sh 'docker-compose pull'
         } } }
         stage('Deploy') {
            steps { ansiColor('xterm') {

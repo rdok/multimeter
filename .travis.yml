@@ -1,0 +1,13 @@
+arch: arm64
+os: linux
+services: docker
+
+jobs:
+  include:
+    - stage: build, publish images, and trigger deployment
+      script:
+      - docker-compose build
+      - echo "$DOCKER_TOKEN" | docker login -u "$DOCKER_LOGIN" --password-stdin
+      - docker-compose push
+      - docker logout
+      - curl --fail -X POST https://jenkins.rdok.dev/buildByToken/build?job=multimeter/deploy\&token=${JENKINS_AUTH_TOKEN}

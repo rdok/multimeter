@@ -1,7 +1,7 @@
 ### Multimeter
 
-![DockerPublisher](https://github.com/rdok/multimeter/workflows/DockerPublisher/badge.svg?branch=master)
-[![Build Status](https://jenkins.rdok.dev/buildStatus/icon?job=multimeter%2Fdeploy)](https://jenkins.rdok.dev/job/multimeter/job/deploy/)
+Docker Publisher [![DockerPublisher](https://travis-ci.org/rdok/multimeter.svg?branch=master)](https://travis-ci.org/rdok/multimeter)  
+Deployment [![Build Status](https://jenkins.rdok.dev/buildStatus/icon?job=multimeter%2Fdeploy)](https://jenkins.rdok.dev/job/multimeter/job/deploy/)
 
 ![Initial setup](logo.jpg "Initial Setup")
 
