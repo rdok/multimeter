@@ -2,12 +2,22 @@ version: "3"
 
 services:
 
-  python3:
+  nginx:
     build:
       context: .
-      dockerfile: Dockerfile
-#    volumes:
-#    - .:/app
-    working_dir: /app
+      dockerfile: docker/nginx/Dockerfile
+    ports:
+    - 9000:80
+
+  uwsgi:
+    build:
+      context: .
+      dockerfile: docker/uwsgi/Dockerfile
+    ports:
+      - 8080:8080
+
+  dht22:
+    build:
+      context: .
+      dockerfile: docker/dht22/Dockerfile
     privileged: true
-    command: tail -f /dev/null

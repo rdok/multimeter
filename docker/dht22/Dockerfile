@@ -11,4 +11,4 @@ RUN pip3 install --upgrade --no-cache-dir \
         rpi.gpio
 
 WORKDIR /app
-COPY . .
+COPY src .
