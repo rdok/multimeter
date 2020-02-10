@@ -9,24 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
-      - name: Build
-        run: docker-compose build
-      - name: Tag
+      - name: Build & Tag
         run: |
-          docker tag multimeter_dht22 rdok/multimeter:dht22;
-          docker tag multimeter_uwsgi rdok/multimeter:uwsgi;
-          docker tag multimeter_nginx rdok/multimeter:nginx;
+          docker-compose build
       - name: Publish
         run: |
           echo ${DOCKER_TOKEN} | docker login -u ${DOCKER_LOGIN} --password-stdin
-          docker push rdok/multimeter:dht22;
-          docker push rdok/multimeter:uwsgi;
-          docker push rdok/multimeter:nginx;
+          docker-compose push
           docker logout;
         env:
           DOCKER_LOGIN: ${{ secrets.DOCKER_LOGIN }}
           DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
       - name: Trigger CD
-        run: curl -X POST "https://jenkins.rdok.dev/job/multimeter/job/deploy/build?token=${TOKEN_NAME}"
+        run: curl --fail -X POST https://jenkins.rdok.dev/buildByToken/build?job=multimeter/deploy\&token=${JENKINS_TOKEN}
         env:
           JENKINS_TOKEN: ${{ secrets.JENKINS_TOKEN }}

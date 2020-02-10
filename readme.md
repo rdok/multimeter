@@ -1,5 +1,8 @@
 ### Multimeter
 
+![DockerPublisher](https://github.com/rdok/multimeter/workflows/DockerPublisher/badge.svg?branch=master)
+[![Build Status](https://jenkins.rdok.dev/buildStatus/icon?job=multimeter%2Fdeploy)](https://jenkins.rdok.dev/job/multimeter/job/deploy/)
+
 ![Initial setup](logo.jpg "Initial Setup")
 
 ```bash
@@ -10,12 +13,6 @@ python3 src/entry.py hello 5
 
 ### TODO.ci
 ```
-docker image pull rdok/multimeter:dht22
-docker image pull rdok/multimeter:uwsgi
-docker image pull rdok/multimeter:nginx
-
 docker run --privileged=true --rm -t rdok/multimeter:dht22  python3 /app/dht_checkup.py
-docker run --rm -t rdok/multimeter:uwsgi 
-docker run --rm -t rdok/multimeter:nginx 
 ```
 

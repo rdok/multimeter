@@ -3,6 +3,7 @@ version: "3"
 services:
 
   nginx:
+    image: rdok/multimeter:nginx
     restart: always
     build:
       context: .
@@ -11,12 +12,14 @@ services:
     - 9000:80
 
   uwsgi:
+    image: rdok/multimeter:uwsgi
     restart: always
     build:
       context: .
       dockerfile: docker/uwsgi/Dockerfile
 
   dht22:
+    image: rdok/multimeter:uwsgi
     build:
       context: .
       dockerfile: docker/dht22/Dockerfile
