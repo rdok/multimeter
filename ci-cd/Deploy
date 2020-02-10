@@ -5,9 +5,9 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
-        stage('Pull Images') {
+        stage('Build') {
            steps { ansiColor('xterm') {
-              sh 'docker-compose pull'
+              sh 'docker-compose build'
         } } }
         stage('Deploy') {
            steps { ansiColor('xterm') {
