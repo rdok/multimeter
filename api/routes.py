@@ -3,9 +3,9 @@ from flask import Flask
 application = Flask(__name__)
 
 
-@application.route("/")
-def hello():
-    return "Cyberpunk 2077"
+@application.route("/api")
+def api():
+    return "Root api endpoint: /api"
 
 
 if __name__ == "__main__":

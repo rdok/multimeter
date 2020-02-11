@@ -7,9 +7,6 @@ RUN apk add --no-cache --virtual .build-deps \
 	&& pip3 install --no-cache flask uwsgi \
 	&& apk del .build-deps;
 
-
 WORKDIR /app
-
-COPY . .
-
-CMD uwsgi --socket 0.0.0.0:8080 --wsgi-file /app/src/flask_app.py
+COPY api .
+CMD uwsgi --socket 0.0.0.0:8080 --wsgi-file /app/routes.py

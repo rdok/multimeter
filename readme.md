@@ -6,7 +6,7 @@
 
 ```bash
 source aliases.sh
-docker-compose up -d
+docker-compose-dev up -d
 python3 src/entry.py hello 5
 ```
 

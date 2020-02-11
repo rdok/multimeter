@@ -10,5 +10,3 @@ RUN pip3 install --upgrade --no-cache-dir \
         adafruit-blinka adafruit-circuitpython-dht \
         rpi.gpio
 
-WORKDIR /app
-COPY src .

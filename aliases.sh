@@ -1,5 +1,5 @@
 #!/bin/bash
 
-function python3() {
-  docker-compose exec -T python3 python3 "$@"
+function docker-compose-dev() {
+  docker-compose -f docker-compose.yml -f docker/docker-compose.dev.yml "$@"
 }
