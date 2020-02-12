@@ -7,10 +7,14 @@ pipeline {
     }
     stages {
         stage('Build') {
-           steps { ansiColor('xterm') { sh 'docker-compose build' } }
+           steps { ansiColor('xterm') {
+               sh 'docker-compose --project-name multimeter build'
+           } }
         }
         stage('Deploy') {
-           steps { ansiColor('xterm') { sh 'docker-compose up -d' } }
+           steps { ansiColor('xterm') {
+               sh 'docker-compose --project-name multimeter up -d'
+           } }
         }
     }
     post {

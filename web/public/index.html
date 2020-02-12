@@ -22,5 +22,14 @@
         </div>
     </div>
 </div>
+<script>
+    const Http = new XMLHttpRequest();
+    Http.open("GET", 'dht22');
+    Http.send();
+
+    Http.onreadystatechange = (e) => {
+        console.log(Http.responseText)
+    }
+</script>
 </body>
 </html>

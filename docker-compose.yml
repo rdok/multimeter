@@ -2,25 +2,23 @@ version: "3"
 
 services:
 
-  nginx:
+  db:
     restart: always
     build:
       context: .
-      dockerfile: docker/nginx/Dockerfile
-      args:
-        - UID:82
-        - GID:82
-    ports:
-    - 9000:80
-
-  uwsgi:
-    restart: always
-    build:
-      context: .
-      dockerfile: docker/uwsgi/Dockerfile
+      dockerfile: db/Dockerfile
 
   dht22:
+    restart: always
     build:
       context: .
-      dockerfile: docker/dht22/Dockerfile
+      dockerfile: dht22/Dockerfile
     privileged: true
+
+  web:
+    restart: always
+    build:
+      context: .
+      dockerfile: web/Dockerfile
+    ports:
+      - 9000:80

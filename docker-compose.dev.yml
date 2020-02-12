@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+
+  db:
+    volumes:
+    - ./db:/db
+    command: uwsgi --socket 0.0.0.0:8080 --touch-reload /db --wsgi-file /db/routes.py
+
+  dht22:
+    volumes:
+      - ./dht22:/dht22
+    command: uwsgi --socket 0.0.0.0:8090 --touch-reload /dht22 --wsgi-file /dht22/routes.py
+
+  web:
+    volumes:
+      - ./web/public:/usr/share/nginx/html
+
