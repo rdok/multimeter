@@ -9,4 +9,3 @@ RUN apk add --no-cache --virtual .build-deps \
 
 WORKDIR /db
 COPY db/routes.py routes.py
-CMD uwsgi --socket 0.0.0.0:8080 --wsgi-file /db/routes.py

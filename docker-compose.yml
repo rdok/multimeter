@@ -7,6 +7,7 @@ services:
     build:
       context: .
       dockerfile: db/Dockerfile
+    command: uwsgi --socket 0.0.0.0:8080 --wsgi-file /db/routes.py
 
   dht22:
     restart: always
@@ -14,6 +15,7 @@ services:
       context: .
       dockerfile: dht22/Dockerfile
     privileged: true
+    command: uwsgi --socket 0.0.0.0:8090 --wsgi-file /dht22/routes.py
 
   web:
     restart: always
@@ -22,3 +24,4 @@ services:
       dockerfile: web/Dockerfile
     ports:
       - 9000:80
+    command: /wait-for db:8080 -- /wait-for dht22:8090 -- nginx -g 'daemon off;'

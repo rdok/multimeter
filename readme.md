@@ -4,6 +4,7 @@
 
 ![Initial setup](.support/logo.jpg "Initial Setup")
 
+### Development Quick start
 ```bash
 source aliases.sh
 docker-compose-dev up -d
