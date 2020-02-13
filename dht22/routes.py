@@ -1,8 +1,9 @@
 import sys
+import time
+
+import adafruit_dht
 import board
 import psutil
-import adafruit_dht
-
 from flask import Flask, jsonify
 
 application = Flask(__name__)
@@ -11,24 +12,37 @@ application = Flask(__name__)
 @application.route("/dht22")
 def default():
     try:
-        dhtDevice = adafruit_dht.DHT22(board.D17)
-
-        temperature_c = dhtDevice.temperature
-        temperature_f = temperature_c * (9 / 5) + 32
-        humidity = dhtDevice.humidity
-
-        kill_libgpiod_pulsei()
-
-        return jsonify({"data": {
-            "temperature": {
-                "celsius": "{:.1f}".format(temperature_c),
-                "fahrenheit": "{:.1f}".format(temperature_f),
-            },
-            "humidity-percentage": humidity,
-        }})
-    except RuntimeError as error:
-        kill_libgpiod_pulsei()
+        humidity, temperature_c, temperature_f = get_dht22_readings()
+    except:
+        error = sys.exc_info()[0]
         return jsonify({"error": str(error)})
+
+    return jsonify({"data": {
+        "temperature": {
+            "celsius": "{:.1f}".format(temperature_c),
+            "fahrenheit": "{:.1f}".format(temperature_f),
+        },
+        "humidity-percentage": humidity,
+    }})
+
+
+def get_dht22_readings():
+    for attempt in range(0, 7):
+        try:
+            dht_device = adafruit_dht.DHT22(board.D17)
+            temperature_c = dht_device.temperature
+            temperature_f = temperature_c * (9 / 5) + 32
+            humidity = dht_device.humidity
+            kill_libgpiod_pulsei()
+
+            return humidity, temperature_c, temperature_f
+        except:
+            kill_libgpiod_pulsei()
+            time.sleep(1)
+            continue
+
+    raise ValueError('Unable to get dht22 sensor readings.')
+
 
 
 def kill_libgpiod_pulsei():
