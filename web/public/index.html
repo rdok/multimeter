@@ -21,7 +21,7 @@
                 <thead>
                 <tr>
                     <th>Temperature °C / °F</th>
-                    <th>Humidity</th>
+                    <th>Humidity %</th>
                     <th>Timestamp</th>
                 </tr>
                 </thead>
@@ -45,7 +45,7 @@
 <script>
     function updateLiveSensorData() {
         const Request = new XMLHttpRequest();
-        Request.open("GET", 'dht22');
+        Request.open("GET", 'api/temperature-humidity-readings');
         Request.send();
 
         Request.onreadystatechange = () => {
@@ -58,11 +58,10 @@
             const data = response.data;
             const celsius = data.temperature.celsius;
             const fahrenheit = data.temperature.fahrenheit;
-            const humidityPercentage = data.humidityPercentage;
+            const humidity = data.humidity.percentage;
 
-            document.querySelector('#temperature').innerHTML = celsius + ' / '
-                + fahrenheit;
-            document.querySelector('#humidity').innerHTML = humidityPercentage;
+            document.querySelector('#temperature').innerHTML = `${celsius} / ${fahrenheit}`;
+            document.querySelector('#humidity').innerHTML = humidity;
             document.querySelector('#timestamp').innerHTML = new Date().toLocaleString();
         }
     }

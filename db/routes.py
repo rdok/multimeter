@@ -1,4 +1,8 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+
+# from flask_wtf import FlaskForm
+# from wtforms import StringField
+# from wtforms.validators import DataRequired
 
 application = Flask(__name__)
 
@@ -8,10 +12,7 @@ def db():
     return jsonify({"description": "Expose stored data, such as measurements."})
 
 
-@application.route("/db/measurements")
-def measurements():
-    return jsonify({"data": {"date": "1/1/2000", "temperature": "22"}})
-
-
-if __name__ == "__main__":
-    application.run(host='0.0.0.0', port=8080)
+@application.route("/db/temperature-humidity-readings", methods=['POST'])
+def create_measurement():
+    # form = MeasurementForm(csrf_enabled=False)
+    return jsonify({"data": {"date": "UUUUUUUU", "temperature": "22"}})

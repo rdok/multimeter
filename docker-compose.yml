@@ -2,6 +2,13 @@ version: "3"
 
 services:
 
+  api:
+    restart: always
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    command: uwsgi --socket 0.0.0.0:8060 --wsgi-file /api/routes.py
+
   db:
     restart: always
     build:
@@ -15,7 +22,13 @@ services:
       context: .
       dockerfile: dht22/Dockerfile
     privileged: true
-    command: uwsgi --socket 0.0.0.0:8090 --wsgi-file /dht22/routes.py
+    command: uwsgi --http 0.0.0.0:8090 --wsgi-file /dht22/routes.py --logto /proc/self/fd/2
+
+  proxy:
+    restart: always
+    build:
+      context: .
+      dockerfile: proxy/Dockerfile
 
   web:
     restart: always
@@ -24,4 +37,4 @@ services:
       dockerfile: web/Dockerfile
     ports:
       - 9000:80
-    command: /wait-for db:8080 -- /wait-for dht22:8090 -- nginx -g 'daemon off;'
+    command: /wait-for api:8060 -- nginx -g 'daemon off;'
