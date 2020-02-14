@@ -2,11 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>Your page title here :)</title>
+    <title>Multimeter</title>
     <meta name="description" content="Multimeter">
     <meta name="author" content="Rizart Dokollari">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="css/normalize.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="icon" type="image/png" href="images/favicon.png">
@@ -14,22 +15,60 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="one-half column" style="margin-top: 25%">
-            <h4>Basic Page</h4>
-            <p>This index.html page is a placeholder with the CSS, font and favicon. It's just waiting for you to add
-                some content! If you need some help hit up the <a href="http://www.getskeleton.com">Skeleton
-                    documentation</a>.</p>
+        <div class="two-half column" style="margin-top: 5%">
+            <h4>Real time DHT22 sensor readings</h4>
+            <table class="u-full-width">
+                <thead>
+                <tr>
+                    <th>Temperature °C / °F</th>
+                    <th>Humidity</th>
+                    <th>Timestamp</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td id="temperature">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </td>
+                    <td id="humidity">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </td>
+                    <td id="timestamp">
+                        <i class="fa fa-refresh fa-spin"></i>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
 <script>
-    const Http = new XMLHttpRequest();
-    Http.open("GET", 'dht22');
-    Http.send();
+    function updateLiveSensorData() {
+        const Request = new XMLHttpRequest();
+        Request.open("GET", 'dht22');
+        Request.send();
 
-    Http.onreadystatechange = (e) => {
-        console.log(Http.responseText)
+        Request.onreadystatechange = () => {
+            const requestCompleted = Request.readyState !== XMLHttpRequest.DONE
+                || Request.status !== 200;
+
+            if (requestCompleted) return;
+
+            const response = JSON.parse(Request.responseText);
+            const data = response.data;
+            const celsius = data.temperature.celsius;
+            const fahrenheit = data.temperature.fahrenheit;
+            const humidityPercentage = data.humidityPercentage;
+
+            document.querySelector('#temperature').innerHTML = celsius + ' / '
+                + fahrenheit;
+            document.querySelector('#humidity').innerHTML = humidityPercentage;
+            document.querySelector('#timestamp').innerHTML = new Date().toLocaleString();
+        }
     }
+
+    updateLiveSensorData();
+    setInterval(updateLiveSensorData, 5000);
 </script>
 </body>
 </html>
