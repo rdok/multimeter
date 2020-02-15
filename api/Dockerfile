@@ -4,7 +4,7 @@ RUN apk add --no-cache --virtual .build-deps \
 		gcc \
 		libc-dev \
 		linux-headers \
-	&& pip3 install --no-cache flask uwsgi requests \
+	&& pip3 install --upgrade --no-cache flask uwsgi requests \
 	&& apk del .build-deps;
 
 WORKDIR /api

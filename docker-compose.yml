@@ -18,7 +18,7 @@ services:
       dockerfile: db/Dockerfile
     command: uwsgi --socket 0.0.0.0:8080 --wsgi-file /db/db.py
     volumes:
-    - db:/db/app.db
+    - db:/db/data
 
   dht22:
     restart: always
