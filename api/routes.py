@@ -9,6 +9,8 @@ dbAPI = 'http://proxy/db/temperature-humidity-readings/'
 
 @application.route("/api/temperature-humidity-readings/")
 def get_measurement():
+    print('api >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+
     response = requests.get(dbAPI)
 
     return TransformResponse().handle(application, response)

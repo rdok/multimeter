@@ -25,8 +25,4 @@ def store_measurement():
     if not form.validate():
         return jsonify(errors=form.errors), 422
 
-    print(data)
-    return jsonify({
-        "status": 200,
-        "data": {"date": "UUUUUUUU", "temperature": "22"}
-    })
+    return jsonify(data)

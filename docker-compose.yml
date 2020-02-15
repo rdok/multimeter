@@ -17,6 +17,8 @@ services:
       context: .
       dockerfile: db/Dockerfile
     command: uwsgi --socket 0.0.0.0:8080 --wsgi-file /db/db.py
+    volumes:
+    - db:/db/app.db
 
   dht22:
     restart: always
@@ -40,3 +42,6 @@ services:
     ports:
       - 9000:80
     command: /wait-for api:8060 -- nginx -g 'daemon off;'
+
+volumes:
+  db:

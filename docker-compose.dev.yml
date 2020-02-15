@@ -15,8 +15,6 @@ services:
     environment:
       - FLASK_ENV=development
     command: uwsgi --socket 0.0.0.0:8080 --touch-reload /db/app/routes.py --wsgi-file /db/db.py
-#      - FLASK_RUN_PORT=8080
-#    command: flask run /db/db.py --wsgi-file /db/db.py
 
   dht22:
     volumes:
