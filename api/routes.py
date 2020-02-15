@@ -1,23 +1,23 @@
 import requests
-from flask import Flask, jsonify
+from flask import Flask, request
+
+from measurements.TransformResponse import TransformResponse
 
 application = Flask(__name__)
 
 
 @application.route("/api/temperature-humidity-readings/")
-def temperature_humidity_readings():
+def get_measurement():
     response = requests.get('http://proxy/dht22')
 
-    content = response.content if response.status_code == 200 \
-        else {"error": response.text}
+    return TransformResponse().handle(application, response)
 
-    print('================================================================================')
-    print(content)
-    print(response.status_code)
 
-    return application.response_class(
-        response=content,
-        status=response.status_code,
-        mimetype='application/json'
-    )
+@application.route("/api/temperature-humidity-readings/", methods=['POST'])
+def create_measurement():
+    url = 'http://proxy/db/temperature-humidity-readings/'
+    response = requests.post(url, request.data)
+    print('db.response: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    print(response)
 
+    return TransformResponse.handle(application, response)

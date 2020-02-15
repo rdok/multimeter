@@ -7,12 +7,14 @@ from flask import Flask, jsonify, request
 application = Flask(__name__)
 
 
-@application.route("/db")
+@application.route("/db/")
 def db():
     return jsonify({"description": "Expose stored data, such as measurements."})
 
 
-@application.route("/db/temperature-humidity-readings", methods=['POST'])
+@application.route("/db/temperature-humidity-readings/", methods=['POST'])
 def create_measurement():
+    print('db: >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
+    print('validate')
     # form = MeasurementForm(csrf_enabled=False)
     return jsonify({"data": {"date": "UUUUUUUU", "temperature": "22"}})
