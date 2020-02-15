@@ -8,7 +8,7 @@ application = Flask(__name__)
 @application.route("/dht22/")
 def default():
     try:
-        humidity, temperature_c, temperature_f = DHT22.get_readings()
+        humidity, temperature_c, temperature_f = DHT22().get_readings()
     except Exception as error:
         return jsonify({"error": str(error)})
 

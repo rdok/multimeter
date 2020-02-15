@@ -1,7 +1,14 @@
+import json
+
+
 class TransformResponse:
     def handle(self, application, response):
-        content = response.content if response.status_code == 200 \
-            else {"error": response.text}
+
+        try:
+            json.loads(response.content)
+            content = response.content
+        except ValueError as error:
+            content = {"error": response.text}
 
         return application.response_class(
             response=content,

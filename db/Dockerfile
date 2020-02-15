@@ -1,11 +1,15 @@
 FROM python:3.8-alpine3.11
 
-RUN apk add --no-cache --virtual .build-deps \
-		gcc \
-		libc-dev \
-		linux-headers \
-	&& pip3 install --no-cache flask WTForms uwsgi \
+RUN apk update && apk add --no-cache --virtual .build-deps \
+		gcc libc-dev linux-headers \
+		sqlite \
+	&& pip3 install --no-cache \
+	    flask uwsgi \
+	    flask-wtf wtforms_json \
+	    flask-sqlalchemy flask-migrate \
 	&& apk del .build-deps;
 
 WORKDIR /db
-COPY db/routes.py routes.py
+COPY db .
+
+ENV FLASK_APP=/db/db.py

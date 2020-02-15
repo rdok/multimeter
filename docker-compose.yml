@@ -11,10 +11,12 @@ services:
 
   db:
     restart: always
+    environment:
+      - FLASK_ENV=production
     build:
       context: .
       dockerfile: db/Dockerfile
-    command: uwsgi --socket 0.0.0.0:8080 --wsgi-file /db/routes.py
+    command: uwsgi --socket 0.0.0.0:8080 --wsgi-file /db/db.py
 
   dht22:
     restart: always
