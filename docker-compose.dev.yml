@@ -7,7 +7,7 @@ services:
       - ./api:/api
     environment:
       - FLASK_ENV=development
-    command: uwsgi --socket 0.0.0.0:8060 --touch-reload /api/routes.py --wsgi-file /api/routes.py
+    command: uwsgi --socket 0.0.0.0:8060 --touch-reload /api/app/routes.py --wsgi-file /api/api.py
 
   db:
     volumes:

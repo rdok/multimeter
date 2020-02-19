@@ -1,11 +1,8 @@
-from flask import Flask, jsonify
-
-from DHT22 import DHT22
-
-application = Flask(__name__)
+from app.dht22 import DHT22
+from flask import jsonify
 
 
-@application.route("/dht22/")
+@application.route("/dht22/current")
 def default():
     try:
         humidity, temperature_c, temperature_f = DHT22().get_readings()

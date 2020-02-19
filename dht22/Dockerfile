@@ -14,4 +14,6 @@ RUN pip3 install --upgrade --no-cache-dir \
 	    psutil
 
 WORKDIR /dht22
-COPY dht22/routes.py routes.py
+RUN pwd
+RUN ls -lat
+COPY dth22 .
