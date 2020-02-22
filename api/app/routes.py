@@ -1,22 +1,14 @@
 import requests
-from flask import Flask, request
+from flask import request
 
+from app import application
 from app.TransformResponse import TransformResponse
 
-application = Flask(__name__)
 dbAPI = 'http://proxy/db/temperature-humidity-readings/'
-
-
-@application.route("/api/dht22/")
-def current_measurement():
-    response = requests.get('http://dht22/current')
-
-    return TransformResponse().handle(application, response)
 
 
 @application.route("/api/temperature-humidity-readings/")
 def get_measurement():
-    print('GET: @application.route("/api/temperature-humidity-readings/")')
     response = requests.get(dbAPI)
 
     return TransformResponse().handle(application, response)

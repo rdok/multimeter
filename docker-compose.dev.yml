@@ -21,7 +21,7 @@ services:
       - ./dht22:/dht22
     environment:
       - FLASK_ENV=development
-    command: uwsgi --socket 0.0.0.0:8090 --touch-reload /dht22/routes.py --wsgi-file /dht22/routes.py
+    command: uwsgi --socket 0.0.0.0:8090 --touch-reload /dht22/app/routes.py --wsgi-file /dht22/dht22.py
 
   web:
     volumes:

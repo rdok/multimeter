@@ -14,6 +14,4 @@ RUN pip3 install --upgrade --no-cache-dir \
 	    psutil
 
 WORKDIR /dht22
-RUN pwd
-RUN ls -lat
-COPY dth22 .
+COPY dht22 .

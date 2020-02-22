@@ -1,6 +1,8 @@
 from app.dht22 import DHT22
 from flask import jsonify
 
+from app import application
+
 
 @application.route("/dht22/current")
 def default():
