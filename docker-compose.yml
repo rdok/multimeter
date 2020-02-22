@@ -7,7 +7,7 @@ services:
     build:
       context: .
       dockerfile: api/Dockerfile
-    command: uwsgi --socket 0.0.0.0:8060 --wsgi-file /api/routes.py
+    command: uwsgi --socket 0.0.0.0:8060 --wsgi-file /api/api.py
 
   db:
     restart: always
@@ -26,7 +26,7 @@ services:
       context: .
       dockerfile: dht22/Dockerfile
     privileged: true
-    command: uwsgi --http 0.0.0.0:8090 --wsgi-file /dht22/routes.py --logto /proc/self/fd/2
+    command: uwsgi --http 0.0.0.0:8090 --wsgi-file /dht22/dht22.py
 
   proxy:
     restart: always

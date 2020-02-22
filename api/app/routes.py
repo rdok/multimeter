@@ -1,16 +1,14 @@
 import requests
-from flask import Flask, request
+from flask import request
 
-from measurements.TransformResponse import TransformResponse
+from app import application
+from app.TransformResponse import TransformResponse
 
-application = Flask(__name__)
 dbAPI = 'http://proxy/db/temperature-humidity-readings/'
 
 
 @application.route("/api/temperature-humidity-readings/")
 def get_measurement():
-    print('api >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>')
-
     response = requests.get(dbAPI)
 
     return TransformResponse().handle(application, response)
@@ -18,6 +16,7 @@ def get_measurement():
 
 @application.route("/api/temperature-humidity-readings/", methods=['POST'])
 def create_measurement():
+    print('POST: @application.route("/api/temperature-humidity-readings/")')
     response = requests.post(dbAPI, None, request.json)
 
     return TransformResponse().handle(application, response)

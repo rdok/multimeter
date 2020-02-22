@@ -8,4 +8,4 @@ RUN apk add --no-cache --virtual .build-deps \
 	&& apk del .build-deps;
 
 WORKDIR /api
-COPY api/routes.py routes.py
+COPY api .

@@ -5,7 +5,7 @@ import board
 import psutil
 
 
-class DHT22():
+class DHT22:
     @staticmethod
     def get_readings():
         attempts = 13
@@ -29,5 +29,4 @@ class DHT22():
     def _kill_libgpiod_pulsein():
         for proc in psutil.process_iter():
             if proc.name() == "libgpiod_pulsein":
-                print('killing ' + proc.name())
                 proc.kill()
