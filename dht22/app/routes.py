@@ -4,17 +4,11 @@ from flask import jsonify
 from app import application
 
 
-@application.route("/dht22/current")
+@application.route("/dht22")
 def default():
     try:
-        humidity, temperature_c, temperature_f = DHT22().get_readings()
+        temperature, humidity = DHT22().get_readings()
     except Exception as error:
         return jsonify({"error": str(error)})
 
-    return jsonify({"data": {
-        "temperature": {
-            "celsius": "{:.1f}".format(temperature_c),
-            "fahrenheit": "{:.1f}".format(temperature_f),
-        },
-        "humidity": {"percentage": "{:.1f}".format(humidity)},
-    }})
+    return jsonify({"temperature": temperature, "humidity": humidity})
