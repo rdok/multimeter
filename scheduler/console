@@ -3,12 +3,12 @@
 
 require __DIR__.'/vendor/autoload.php';
 
-use App\Command\StoreTemperatureCommand;
+use App\Command\TemperatureCommand;
 use Symfony\Component\Console\Application;
 
 $application = new Application();
 
-$application->add(new StoreTemperatureCommand);
+$application->add(new TemperatureCommand);
 
 $application->run();
 
