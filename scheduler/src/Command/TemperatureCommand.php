@@ -2,22 +2,24 @@
 
 namespace App\Command;
 
-use App\Db\DbClientInterface;
-use App\Dht22\Dht22ClientInterface;
+use App\Db\ProvidesDbClient;
+use App\Dht22\ProvidesDht22Client;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
-class TemperatureCommand extends Command
+final class TemperatureCommand extends Command
 {
     protected static $defaultName = 'dht22:temperature';
 
-    private DbClientInterface $dbClient;
-    private Dht22ClientInterface $dht22Client;
+    /** @var ProvidesDbClient $dbClient */
+    private $dbClient;
+    /** @var ProvidesDht22Client $dht22Client */
+    private $dht22Client;
 
     public function __construct(
-        Dht22ClientInterface $dht22Client,
-        DbClientInterface $dbClient
+        ProvidesDht22Client $dht22Client,
+        ProvidesDbClient $dbClient
     )
     {
         parent::__construct();

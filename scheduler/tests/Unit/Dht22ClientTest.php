@@ -3,7 +3,7 @@
 namespace Unit;
 
 use App\Dht22\Dht22Client;
-use App\Dht22\Dht22ClientInterface;
+use App\Dht22\ProvidesDht22Client;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
 
@@ -14,7 +14,7 @@ class Dht22ClientTest extends TestCase
     {
         $dht22Client = new Dht22Client;
 
-        $this->assertInstanceOf(Dht22ClientInterface::class, $dht22Client);
+        $this->assertInstanceOf(ProvidesDht22Client::class, $dht22Client);
     }
 
     /** @test */

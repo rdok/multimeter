@@ -13,6 +13,15 @@ console () {
   docker-run php console "$@"
 }
 
-t () {
+pt () {
   docker-run ./vendor/bin/phpunit "$@"
+}
+
+phpinsights () {
+  docker run -it --rm -w /app -v "$(pwd)":/app nunomaduro/phpinsights \
+    --min-quality=90 \
+    --min-complexity=90 \
+    --min-architecture=90 \
+    --min-style=100 \
+    "$@"
 }

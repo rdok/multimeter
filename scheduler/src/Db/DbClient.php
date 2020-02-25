@@ -1,12 +1,14 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Db;
 
-use App\Temperature\TemperatureInterface;
+use App\Temperature\ProvidesTemperature;
 
-class DbClient implements DbClientInterface
+final class DbClient implements ProvidesDbClient
 {
-    public function storeTemperature(TemperatureInterface $temperature): array
+    public function storeTemperature(ProvidesTemperature $temperature): array
     {
         // TODO: Implement storeTemperature() method.
     }

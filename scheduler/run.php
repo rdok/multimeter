@@ -6,4 +6,3 @@ use Symfony\Component\Finder\Finder;
 
 $finder = new Finder();
 $finder->in('../app');
-

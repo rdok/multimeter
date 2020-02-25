@@ -3,9 +3,9 @@
 namespace tests\Feature;
 
 use App\Command\TemperatureCommand;
-use App\Db\DbClientInterface;
-use App\Dht22\Dht22ClientInterface;
-use App\Temperature\TemperatureInterface;
+use App\Db\ProvidesDbClient;
+use App\Dht22\ProvidesDht22Client;
+use App\Temperature\ProvidesTemperature;
 use Carbon\Carbon;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
@@ -15,11 +15,11 @@ class TemperatureCommandTest extends TestCase
 {
     private array $expected;
 
-    /** * @var TemperatureInterface|MockObject */
+    /** * @var ProvidesTemperature|MockObject */
     private MockObject $temperature;
-    /** * @var DbClientInterface|MockObject */
+    /** * @var ProvidesDbClient|MockObject */
     private $dbClient;
-    /** * @var Dht22ClientInterface|MockObject */
+    /** * @var ProvidesDht22Client|MockObject */
     private $dht22Client;
 
     public function setUp(): void
@@ -32,9 +32,9 @@ class TemperatureCommandTest extends TestCase
             'sensor' => 'bay',
             'createdAt' => Carbon::now()->toAtomString()
         ];
-        $this->temperature = $this->createMock(TemperatureInterface::class);
-        $this->dbClient = $this->createMock(DbClientInterface::class);
-        $this->dht22Client = $this->createMock(Dht22ClientInterface::class);
+        $this->temperature = $this->createMock(ProvidesTemperature::class);
+        $this->dbClient = $this->createMock(ProvidesDbClient::class);
+        $this->dht22Client = $this->createMock(ProvidesDht22Client::class);
     }
 
     /** @test */

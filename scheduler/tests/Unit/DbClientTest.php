@@ -3,7 +3,7 @@
 namespace Unit;
 
 use App\Db\DbClient;
-use App\Db\DbClientInterface;
+use App\Db\ProvidesDbClient;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
@@ -15,7 +15,7 @@ class DbClientTest extends TestCase
     {
         $dbClient = new DbClient;
 
-        $this->assertInstanceOf(DbClientInterface::class, $dbClient);
+        $this->assertInstanceOf(ProvidesDbClient::class, $dbClient);
     }
 
     /** @test */

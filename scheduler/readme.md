@@ -6,7 +6,7 @@ docker build . -t multimeter/scheduler-dev
 source aliases.sh
 
 # PHP
-p composer install
+composer install
 # PHPUnit
-t
+pt
 ```

@@ -2,9 +2,9 @@
 
 namespace Unit;
 
+use App\Temperature\InvalidTemperature;
+use App\Temperature\ProvidesTemperature;
 use App\Temperature\Temperature;
-use App\Temperature\TemperatureException;
-use App\Temperature\TemperatureInterface;
 use Carbon\Carbon;
 use PHPUnit\Framework\TestCase;
 
@@ -19,13 +19,13 @@ class TemperatureTest extends TestCase
             "createdAt" => Carbon::now()->toAtomString(),
         ]);
 
-        $this->assertInstanceOf(TemperatureInterface::class, $temperature);
+        $this->assertInstanceOf(ProvidesTemperature::class, $temperature);
     }
 
     /** @test */
     public function validates_required_fields()
     {
-        $this->expectException(TemperatureException::class);
+        $this->expectException(InvalidTemperature::class);
         $error = [
             "sensor" => ["The sensor field is required."],
             "temperature" => ["The temperature field is required."],

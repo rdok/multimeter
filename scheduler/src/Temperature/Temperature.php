@@ -1,11 +1,19 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Temperature;
 
 use App\Validation\ValidatorFactory;
 
-class Temperature implements TemperatureInterface
+final class Temperature implements ProvidesTemperature
 {
+    /**
+     * Temperature constructor.
+     *
+     * @param array $data
+     * @throws InvalidTemperature
+     */
     public function __construct(array $data)
     {
         $this->validate($data);
@@ -13,18 +21,18 @@ class Temperature implements TemperatureInterface
 
     /**
      * @param array $data
-     * @throws TemperatureException
+     * @throws InvalidTemperature
      */
     private function validate(array $data): void
     {
         $validator = ValidatorFactory::make($data, [
             'sensor' => 'required',
             'temperature' => 'required|numeric|min:-89.2|max:57.7',
-            'createdAt' => 'required|date_format:Y-m-d\TH:i:sP'
+            'createdAt' => 'required|date_format:Y-m-d\TH:i:sP',
         ]);
 
         if ($validator->fails()) {
-            throw new TemperatureException($validator->errors()->toJson());
+            throw new InvalidTemperature($validator->errors()->toJson());
         }
     }
 }

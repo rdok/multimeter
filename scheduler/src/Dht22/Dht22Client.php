@@ -2,11 +2,11 @@
 
 namespace App\Dht22;
 
-use App\Temperature\TemperatureInterface;
+use App\Temperature\ProvidesTemperature;
 
-class Dht22Client implements Dht22ClientInterface
+final class Dht22Client implements ProvidesDht22Client
 {
-    public function getTemperature(): TemperatureInterface
+    public function getTemperature(): ProvidesTemperature
     {
         // TODO: Implement getTemperature() method.
     }
