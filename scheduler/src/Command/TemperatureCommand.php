@@ -12,10 +12,8 @@ final class TemperatureCommand extends Command
 {
     protected static $defaultName = 'dht22:temperature';
 
-    /** @var ProvidesDbClient $dbClient */
-    private $dbClient;
-    /** @var ProvidesDht22Client $dht22Client */
-    private $dht22Client;
+    private ProvidesDbClient $dbClient;
+    private ProvidesDht22Client $dht22Client;
 
     public function __construct(
         ProvidesDht22Client $dht22Client,

@@ -1,3 +1,4 @@
+#!/bin/bash
 
 docker-run () {
   docker run --rm -it -v "${PWD}:/app" -w /app -u "${UID}" \
@@ -22,6 +23,6 @@ phpinsights () {
     --min-quality=90 \
     --min-complexity=90 \
     --min-architecture=90 \
-    --min-style=100 \
+    --min-style=95 \
     "$@"
 }
