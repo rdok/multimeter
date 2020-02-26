@@ -12,12 +12,10 @@ class DHT22:
         for attempt in range(0, attempts):
             try:
                 dht_device = adafruit_dht.DHT22(board.D17)
-                temperature_c = dht_device.temperature
-                temperature_f = temperature_c * (9 / 5) + 32
                 humidity = dht_device.humidity
                 DHT22._kill_libgpiod_pulsein()
 
-                return humidity, temperature_c, temperature_f
+                return temperature, humidity
             except:
                 DHT22._kill_libgpiod_pulsein()
                 time.sleep(1)

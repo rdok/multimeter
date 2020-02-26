@@ -9,6 +9,13 @@ services:
       dockerfile: api/Dockerfile
     command: uwsgi --socket 0.0.0.0:8060 --wsgi-file /api/api.py
 
+  scheduler:
+    restart: always
+    build:
+      context: .
+      dockerfile: api/Dockerfile
+    command: uwsgi --socket 0.0.0.0:8060 --wsgi-file /api/api.py
+
   db:
     restart: always
     environment:
