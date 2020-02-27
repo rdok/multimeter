@@ -6,6 +6,9 @@ use App\Validation\ValidatorFactory;
 
 final class Temperature implements ProvidesTemperature
 {
+    /** * @var string[] */
+    private array $data;
+
     /**
      * Temperature constructor.
      *
@@ -15,6 +18,8 @@ final class Temperature implements ProvidesTemperature
     public function __construct(array $data)
     {
         $this->validate($data);
+
+        $this->data = $data;
     }
 
     /**
@@ -32,5 +37,10 @@ final class Temperature implements ProvidesTemperature
         if ($validator->fails()) {
             throw new InvalidTemperature($validator->errors()->toJson());
         }
+    }
+
+    public function data(): array
+    {
+        return $this->data;
     }
 }

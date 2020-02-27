@@ -6,7 +6,7 @@ use App\Temperature\InvalidTemperature;
 use App\Temperature\ProvidesTemperature;
 use App\Temperature\Temperature;
 use Carbon\Carbon;
-use TestCase;
+use Tests\TestCase;
 
 class TemperatureTest extends TestCase
 {
@@ -80,5 +80,19 @@ class TemperatureTest extends TestCase
             "temperature" => -999999,
             "createdAt" => Carbon::now()->toAtomString(),
         ]);
+    }
+
+    /** @test */
+    public function converts_to_string()
+    {
+        $data = [
+            "sensor" => 'lorem',
+            "temperature" => 20.5,
+            "createdAt" => Carbon::now()->toAtomString(),
+        ];
+
+        $temperature = new Temperature($data);
+
+        $this->assertSame($data, $temperature->data());
     }
 }

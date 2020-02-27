@@ -4,5 +4,5 @@ namespace App\Temperature;
 
 interface ProvidesTemperature
 {
-
+    public function data(): array;
 }

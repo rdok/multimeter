@@ -2,7 +2,7 @@
 
 namespace Integration;
 
-use TestCase;
+use Tests\TestCase;
 
 class TemperatureTest extends TestCase
 {

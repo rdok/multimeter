@@ -4,7 +4,7 @@ namespace Unit;
 
 use App\Dht22\Dht22Client;
 use App\Dht22\ProvidesDht22Client;
-use TestCase;
+use Tests\TestCase;
 
 class Dht22ClientTest extends TestCase
 {

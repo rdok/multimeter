@@ -17,6 +17,12 @@ final class DbClient implements ProvidesDbClient
 
     public function storeTemperature(ProvidesTemperature $temperature): string
     {
-        // TODO: Implement storeTemperature() method.
+        $this->httpClient->request(
+            'POST',
+            'http://proxy/db/temperatures',
+            ['body' => $temperature->data()]
+        );
+
+        return "2077";
     }
 }

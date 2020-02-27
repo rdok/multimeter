@@ -1,6 +1,6 @@
-<?php
+<?php declare(strict_types = 1);
 
-namespace Unit;
+namespace Tests\Unit;
 
 use App\Db\DbClient;
 use App\Db\ProvidesDbClient;
@@ -8,15 +8,15 @@ use App\Temperature\Temperature;
 use Carbon\Carbon;
 use Symfony\Component\HttpClient\Response\MockResponse;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
-use TestCase;
+use Tests\TestCase;
 
 class DbClientTest extends TestCase
 {
     /** @test */
     public function implement_db_client_interface()
     {
-        $dbClient = new DbClient;
-
+        $dbClient = $this->app->make(ProvidesDbClient::class);
+        $this->assertInstanceOf(DbClient::class, $dbClient);
         $this->assertInstanceOf(ProvidesDbClient::class, $dbClient);
     }
 
@@ -33,10 +33,14 @@ class DbClientTest extends TestCase
         $httpClient
             ->expects($this->once())
             ->method('request')
-            ->with('post', 'http://proxy/db/temperatures', $data)
+            ->with('POST', 'http://proxy/db/temperatures', ['body' => $data])
             ->willReturn(new MockResponse(json_encode(['id' => '2077'])));
 
-        $dbClient = new DbClient($httpClient);
+        $this->app->instance(HttpClientInterface::class, $httpClient);
+
+        /** @var DbClient $dbClient */
+        $dbClient = $this->app->make(ProvidesDbClient::class);
+
         $actualExpectedId = $dbClient->storeTemperature(new Temperature($data));
 
         $this->assertSame('2077', $actualExpectedId);
