@@ -1,19 +1,23 @@
-<?php
+<?php declare(strict_types = 1);
 
 namespace App\Command;
 
 use App\Db\ProvidesDbClient;
 use App\Dht22\ProvidesDht22Client;
+use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 
 final class TemperatureCommand extends Command
 {
+    /** @var string */
     protected static $defaultName = 'dht22:temperature';
 
-    private ProvidesDbClient $dbClient;
-    private ProvidesDht22Client $dht22Client;
+    /** @var ProvidesDbClient */
+    private $dbClient;
+    /** @var ProvidesDht22Client */
+    private $dht22Client;
 
     public function __construct(
         ProvidesDht22Client $dht22Client,
@@ -26,7 +30,7 @@ final class TemperatureCommand extends Command
         $this->dht22Client = $dht22Client;
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         $this->setDescription(
             'Get a reading from dht22 and store it to the db service.'
@@ -34,8 +38,16 @@ final class TemperatureCommand extends Command
     }
 
 
-    protected function execute(InputInterface $input, OutputInterface $output)
+    protected function execute(
+        InputInterface $input,
+        OutputInterface $output
+    ): int
     {
+        if ($input->isInteractive()) {
+            $message = 'Interactive mode not supported.';
+            throw new InvalidArgumentException($message);
+        }
+
         $temperature = $this->dht22Client->getTemperature();
         $dbRecord = $this->dbClient->storeTemperature($temperature);
 

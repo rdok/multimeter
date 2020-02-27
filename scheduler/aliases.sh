@@ -20,9 +20,9 @@ pt () {
 
 phpinsights () {
   docker run -it --rm -w /app -v "$(pwd)":/app nunomaduro/phpinsights \
-    --min-quality=90 \
+    --min-quality=95 \
     --min-complexity=90 \
-    --min-architecture=90 \
-    --min-style=95 \
+    --min-architecture=95 \
+    --min-style=100 \
     "$@"
 }

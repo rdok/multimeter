@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Temperature;
 
@@ -11,7 +9,7 @@ final class Temperature implements ProvidesTemperature
     /**
      * Temperature constructor.
      *
-     * @param array $data
+     * @param array<string> $data
      * @throws InvalidTemperature
      */
     public function __construct(array $data)
@@ -20,7 +18,7 @@ final class Temperature implements ProvidesTemperature
     }
 
     /**
-     * @param array $data
+     * @param array<string> $data
      * @throws InvalidTemperature
      */
     private function validate(array $data): void

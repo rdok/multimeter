@@ -1,6 +1,4 @@
-<?php
-
-declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Validation;
 
@@ -12,8 +10,8 @@ use Illuminate\Validation\Validator;
 final class ValidatorFactory
 {
     /**
-     * @param array $data
-     * @param array $rules
+     * @param array<string> $data
+     * @param array<string> $rules
      * @return Validator
      */
     public static function make(array $data, array $rules): Validator
