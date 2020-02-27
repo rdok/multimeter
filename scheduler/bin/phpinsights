@@ -1,0 +1,10 @@
+#!/usr/bin/bash
+
+ROOT_DIR="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )/.."
+
+docker run -it --rm -w /app -v "${ROOT_DIR}":/app nunomaduro/phpinsights \
+    --min-quality=95 \
+    --min-complexity=90 \
+    --min-architecture=95 \
+    --min-style=100 \
+    "$@"

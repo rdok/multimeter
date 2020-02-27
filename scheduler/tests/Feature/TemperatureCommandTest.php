@@ -8,8 +8,8 @@ use App\Dht22\ProvidesDht22Client;
 use App\Temperature\ProvidesTemperature;
 use Carbon\Carbon;
 use PHPUnit\Framework\MockObject\MockObject;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Tester\CommandTester;
+use TestCase;
 
 class TemperatureCommandTest extends TestCase
 {

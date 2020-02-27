@@ -8,7 +8,7 @@ interface ProvidesDbClient
 {
     /**
      * @param ProvidesTemperature $temperature
-     * @return array<string>
+     * @return string The new record id.
      */
-    public function storeTemperature(ProvidesTemperature $temperature): array;
+    public function storeTemperature(ProvidesTemperature $temperature): string;
 }

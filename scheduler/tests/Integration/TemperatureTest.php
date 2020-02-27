@@ -2,7 +2,7 @@
 
 namespace Integration;
 
-use PHPUnit\Framework\TestCase;
+use TestCase;
 
 class TemperatureTest extends TestCase
 {

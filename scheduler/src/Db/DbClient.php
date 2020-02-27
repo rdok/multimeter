@@ -3,14 +3,19 @@
 namespace App\Db;
 
 use App\Temperature\ProvidesTemperature;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final class DbClient implements ProvidesDbClient
 {
-    /**
-     * @param ProvidesTemperature $temperature
-     * @return array<string>
-     */
-    public function storeTemperature(ProvidesTemperature $temperature): array
+    /** * @var HttpClientInterface */
+    private $httpClient;
+
+    public function __construct(HttpClientInterface $httpClient)
+    {
+        $this->httpClient = $httpClient;
+    }
+
+    public function storeTemperature(ProvidesTemperature $temperature): string
     {
         // TODO: Implement storeTemperature() method.
     }

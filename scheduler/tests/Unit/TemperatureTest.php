@@ -6,7 +6,7 @@ use App\Temperature\InvalidTemperature;
 use App\Temperature\ProvidesTemperature;
 use App\Temperature\Temperature;
 use Carbon\Carbon;
-use PHPUnit\Framework\TestCase;
+use TestCase;
 
 class TemperatureTest extends TestCase
 {

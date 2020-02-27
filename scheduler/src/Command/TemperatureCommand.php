@@ -37,7 +37,6 @@ final class TemperatureCommand extends Command
         );
     }
 
-
     protected function execute(
         InputInterface $input,
         OutputInterface $output

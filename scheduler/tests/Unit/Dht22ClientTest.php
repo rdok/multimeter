@@ -4,8 +4,7 @@ namespace Unit;
 
 use App\Dht22\Dht22Client;
 use App\Dht22\ProvidesDht22Client;
-use PHPUnit\Framework\TestCase;
-use Symfony\Contracts\HttpClient\HttpClientInterface;
+use TestCase;
 
 class Dht22ClientTest extends TestCase
 {
