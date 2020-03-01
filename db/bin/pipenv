@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+docker run --rm -it \
+    --volume "${PWD}:/app" \
+    --workdir /app \
+    --volume "${PWD}/vendor:/home/db-user/.local" \
+    --entrypoint '' \
+  multimeter_db:dev pipenv --three "$@"

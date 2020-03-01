@@ -32,7 +32,7 @@ final class TemperatureCommand extends Command
     protected function configure(): void
     {
         $this->setDescription(
-            'Get a reading from dht22 and store it to the db service.'
+            'Get a reading from dht22 service and store it to the db service.'
         );
     }
 

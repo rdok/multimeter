@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+docker run --rm -it \
+    --user "$(id -u):$(id -g)" \
+    --volume "${PWD}:/app" \
+    --workdir /app \
+    --entrypoint '' \
+  multimeter_db:dev python3 "$@"
