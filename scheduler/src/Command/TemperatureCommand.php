@@ -4,7 +4,6 @@ namespace App\Command;
 
 use App\Db\ProvidesDbClient;
 use App\Dht22\ProvidesDht22Client;
-use InvalidArgumentException;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -42,11 +41,6 @@ final class TemperatureCommand extends Command
         OutputInterface $output
     ): int
     {
-        if ($input->isInteractive()) {
-            $message = 'Interactive mode not supported.';
-            throw new InvalidArgumentException($message);
-        }
-
         $temperature = $this->dht22Client->getTemperature();
         $dbRecord = $this->dbClient->storeTemperature($temperature);
 

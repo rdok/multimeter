@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Temperature;
 
@@ -6,9 +6,6 @@ use App\Validation\ValidatorFactory;
 
 final class Temperature implements ProvidesTemperature
 {
-    /** * @var string[] */
-    private array $data;
-
     /**
      * Temperature constructor.
      *
@@ -39,6 +36,7 @@ final class Temperature implements ProvidesTemperature
         }
     }
 
+    /**  @return array<string> */
     public function toArray(): array
     {
         return $this->data;

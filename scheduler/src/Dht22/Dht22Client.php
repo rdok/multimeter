@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Dht22;
 
@@ -8,7 +8,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final class Dht22Client implements ProvidesDht22Client
 {
-    /** * @var HttpClientInterface */
+    /** @var \Symfony\Contracts\HttpClient\HttpClientInterface $httpClient */
     private $httpClient;
 
     public function __construct(HttpClientInterface $httpClient)

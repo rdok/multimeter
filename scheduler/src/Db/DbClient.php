@@ -1,4 +1,4 @@
-<?php declare(strict_types=1);
+<?php declare(strict_types = 1);
 
 namespace App\Db;
 
@@ -8,7 +8,7 @@ use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 final class DbClient implements ProvidesDbClient
 {
-    /** * @var HttpClientInterface */
+    /** @var HttpClientInterface $httpClient */
     private $httpClient;
 
     public function __construct(HttpClientInterface $httpClient)
@@ -31,7 +31,11 @@ final class DbClient implements ProvidesDbClient
         return $response['id'];
     }
 
-    private function validate($response)
+    /**
+     * @param array<string> $response
+     * @throws InvalidDbResponse
+     */
+    private function validate(array $response): void
     {
         $validator = ValidatorFactory::make($response, ['id' => 'required']);
 

@@ -2,12 +2,11 @@
 
 namespace App;
 
-use DI\Container;
 use DI\ContainerBuilder;
 
 final class App
 {
-    /** * @var Container */
+    /** @var \DI\Container $ioc */
     private $ioc;
 
     public function __construct()
@@ -24,12 +23,12 @@ final class App
         $this->ioc = $builder->build();
     }
 
-    public function make($name)
+    public function make(string $name): object
     {
         return $this->ioc->get($name);
     }
 
-    public function instance($name, $object)
+    public function instance(string $name, object $object): self
     {
         $this->ioc->set($name, $object);
 
