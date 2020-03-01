@@ -12,14 +12,15 @@ final class TemperatureFactory
         $this->temperature = new Temperature([
             'sensor' => $generator->word,
             'temperature' => $generator->numberBetween(-89.2, 57.7),
-            'createdAt' => $generator->dateTime->format('Y-m-d\TH:i:sP'),
+            'measuredAt' => $generator->dateTime->format('Y-m-d\TH:i:sP'),
         ]);
     }
 
     public function toArray()
     {
-        return $this->temperature->data();
+        return $this->temperature->toArray();
     }
+
     public function toObject()
     {
         return $this->temperature;

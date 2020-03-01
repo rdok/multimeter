@@ -1,4 +1,4 @@
-<?php declare(strict_types = 1);
+<?php declare(strict_types=1);
 
 namespace App\Temperature;
 
@@ -31,7 +31,7 @@ final class Temperature implements ProvidesTemperature
         $validator = ValidatorFactory::make($data, [
             'sensor' => 'required',
             'temperature' => 'required|numeric|min:-89.2|max:57.7',
-            'createdAt' => 'required|date_format:Y-m-d\TH:i:sP',
+            'measuredAt' => 'required|date_format:Y-m-d\TH:i:sP',
         ]);
 
         if ($validator->fails()) {
@@ -39,7 +39,7 @@ final class Temperature implements ProvidesTemperature
         }
     }
 
-    public function data(): array
+    public function toArray(): array
     {
         return $this->data;
     }

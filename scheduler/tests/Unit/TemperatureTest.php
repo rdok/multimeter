@@ -16,7 +16,7 @@ class TemperatureTest extends TestCase
         $temperature = new Temperature([
             "sensor" => 'lorem',
             "temperature" => 20.5,
-            "createdAt" => Carbon::now()->toAtomString(),
+            "measuredAt" => Carbon::now()->toAtomString(),
         ]);
 
         $this->assertInstanceOf(ProvidesTemperature::class, $temperature);
@@ -29,7 +29,7 @@ class TemperatureTest extends TestCase
         $error = [
             "sensor" => ["The sensor field is required."],
             "temperature" => ["The temperature field is required."],
-            "createdAt" => ["The created at field is required."]
+            "measuredAt" => ["The measured at field is required."]
         ];
         $this->expectExceptionMessage(json_encode($error, true));
 
@@ -41,14 +41,14 @@ class TemperatureTest extends TestCase
     {
         $error = [
             "temperature" => ["The temperature must be a number."],
-            "createdAt" => ["The created at does not match the format Y-m-d\\TH:i:sP."]
+            "measuredAt" => ["The measured at does not match the format Y-m-d\\TH:i:sP."]
         ];
         $this->expectExceptionMessage(json_encode($error, true));
 
         new Temperature([
             "sensor" => 'valid',
             "temperature" => 'invalid',
-            "createdAt" => 'invalid',
+            "measuredAt" => 'invalid',
         ]);
     }
 
@@ -63,7 +63,7 @@ class TemperatureTest extends TestCase
         new Temperature([
             "sensor" => 'valid',
             "temperature" => 999999,
-            "createdAt" => Carbon::now()->toAtomString(),
+            "measuredAt" => Carbon::now()->toAtomString(),
         ]);
     }
 
@@ -78,7 +78,7 @@ class TemperatureTest extends TestCase
         new Temperature([
             "sensor" => 'valid',
             "temperature" => -999999,
-            "createdAt" => Carbon::now()->toAtomString(),
+            "measuredAt" => Carbon::now()->toAtomString(),
         ]);
     }
 
@@ -88,11 +88,11 @@ class TemperatureTest extends TestCase
         $data = [
             "sensor" => 'lorem',
             "temperature" => 20.5,
-            "createdAt" => Carbon::now()->toAtomString(),
+            "measuredAt" => Carbon::now()->toAtomString(),
         ];
 
         $temperature = new Temperature($data);
 
-        $this->assertSame($data, $temperature->data());
+        $this->assertSame($data, $temperature->toArray());
     }
 }

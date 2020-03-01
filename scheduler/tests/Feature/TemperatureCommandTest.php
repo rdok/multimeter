@@ -30,7 +30,7 @@ class TemperatureCommandTest extends TestCase
             'id' => 1,
             'temperature' => 20,
             'sensor' => 'bay',
-            'createdAt' => Carbon::now()->toAtomString()
+            'measuredAt' => Carbon::now()->toAtomString()
         ];
         $this->temperature = $this->createMock(ProvidesTemperature::class);
         $this->dbClient = $this->createMock(ProvidesDbClient::class);

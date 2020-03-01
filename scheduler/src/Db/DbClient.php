@@ -21,7 +21,7 @@ final class DbClient implements ProvidesDbClient
         $response = $this->httpClient->request(
             'POST',
             'http://proxy/db/temperatures',
-            ['body' => $temperature->data()]
+            ['body' => $temperature->toArray()]
         );
 
         $response = json_decode($response->getContent(), true);
