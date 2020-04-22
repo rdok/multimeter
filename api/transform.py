@@ -1,7 +1,7 @@
 import json
 
 
-class TransformResponse:
+class Transform:
     def handle(self, application, response):
 
         try:

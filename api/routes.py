@@ -2,7 +2,7 @@ import requests
 from flask import request
 
 from app import application
-from app.TransformResponse import TransformResponse
+from TransformResponse import TransformResponse
 
 dbAPI = 'http://proxy/db/temperatures/'
 

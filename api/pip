@@ -1,0 +1,9 @@
+#!/bin/bash
+
+docker run \
+    --rm \
+    --interactive \
+    --volume "${PWD}:/src" \
+    --workdir /src \
+    multimeter-api \
+        pip "$@"
