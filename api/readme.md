@@ -1,7 +1,9 @@
 ### Development
 ```
-docker build -t multimeter-api:latest .
-./pip --version
+docker build --tag multimeter:api --build-arg "UID=$(id -u)"  \
+    --build-arg "GID=$(id -g)" .
+
+./python pipenv install flask
 ```
 ### TODO
 

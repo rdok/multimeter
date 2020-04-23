@@ -1,0 +1,11 @@
+#!/bin/bash
+
+docker run \
+    --rm \
+    --interactive \
+    --tty \
+    --volume "${PWD}:/api/src" \
+    --workdir /api/src \
+    --user "$(id -u):$(id -g)" \
+    multimeter:api \
+      "$@"
