@@ -1,0 +1,11 @@
+function ptw() {
+    ./python pipenv run ptw
+}
+
+function pytest() {
+    ./python pipenv run pytest "$@"
+}
+
+function pipenv() {
+    ./python pipenv "$@"
+}
